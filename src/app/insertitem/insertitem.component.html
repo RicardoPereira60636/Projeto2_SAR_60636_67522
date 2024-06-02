@@ -1,0 +1,77 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="toolbar-container">
+    <button mat-button routerLink="/">Log In</button>
+    <button mat-button routerLink="/auction">Auction</button>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container class="navigation_bar">
+  <mat-sidenav #sidenav mode="side">
+    <button mat-button routerLink="/auction">Auction</button>
+    <button mat-button (click)="logout()">Log Out</button> 
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main>
+	    <mat-card class="form-mat-card">
+        <div class="form_container">
+          <h3>Fill in the Form to insert a new item for auction</h3>
+            <form [formGroup]="itemForm" (submit)="submit()">
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label> Description
+                  </mat-label>
+                  <input matInput formControlName="description" id="description" type="text" class="form-control">
+                  <mat-error *ngIf="f['description'].touched && f['description'].invalid">
+                    <span *ngIf="f['description'].errors['required']">This field is mandatory.</span>
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label> Starting bid value
+                  </mat-label>
+                  <input matInput formControlName="currentbid" id="currentbid" type="number" class="form-control">
+                  <mat-error *ngIf="f['currentbid'].touched && f['currentbid'].invalid">
+                    <span *ngIf="f['currentbid'].errors['required']">This field is mandatory.</span>
+                    <span *ngIf="f['currentbid'].errors['pattern']">This must be a positive number.</span>
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label> Buy now Value
+                  </mat-label>
+                  <input matInput formControlName="buynow" id="buynow" type="number" class="form-control">
+                  <mat-error *ngIf="f['buynow'].touched && f['buynow'].invalid">
+                    <span *ngIf="f['buynow'].errors['required']">This field is mandatory.</span>
+                    <span *ngIf="f['buynow'].errors['pattern']">This must be a positive number.</span>
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label> Duration (in seconds)
+                  </mat-label>
+                  <input matInput formControlName="remainingtime" id="remainingtime" type="text" class="form-control">
+                  <mat-error *ngIf="f['remainingtime'].touched && f['remainingtime'].invalid">
+                    <span *ngIf="f['remainingtime'].errors['required']">This field is mandatory.</span>
+                    <span *ngIf="f['remainingtime'].errors['pattern']">This must be a positive number.</span>
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field" appearance="outline">
+                  <mat-label> Owner (username)
+                  </mat-label>
+                  <input matInput formControlName="owner" id="owner" type="text" class="form-control">
+                </mat-form-field>
+                <div class="buttons-container">
+                  <button mat-raised-button  color="primary" [disabled]="!itemForm.valid" type="submit">Insert Item</button>
+                  <button mat-raised-button color="primary" type= "button" (click)="clearForm()">Clear</button>
+                </div>  
+            </form>
+            <div class="error-container">
+              <mat-card class="error" fxLayoutAlign="center center" *ngIf="errorMessage" >
+                {{errorMessage}}  
+              </mat-card>
+            </div>   
+          </div>  
+      </mat-card>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

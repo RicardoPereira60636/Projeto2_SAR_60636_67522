@@ -1,0 +1,54 @@
+
+.error{
+  color: red;
+}
+
+.form-mat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.form-field {
+  width: 80%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.login-button,
+.register-button {
+  margin: 0 10px;
+}
+
+
+.toolbar-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navigation_bar{
+  display: flex;
+  flex-direction: column;
+}
+
+.error-container {
+  display: flex;
+  flex-direction:row;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+

@@ -1,0 +1,50 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="toolbar-container">
+    <button mat-button routerLink="/register">Register</button>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container class="navigation_bar">
+  <mat-sidenav #sidenav mode="side">
+    <button mat-button routerLink="/register">Register</button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main>
+      <mat-card class="form-mat-card">
+        <div class="form-container">
+          <form class="signin_from" [formGroup]="loginForm" (submit)="submit()">
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label>Enter username</mat-label>
+              <input matInput formControlName="username" id="username" type="text" class="form-control">
+              <mat-error *ngIf="f['username'].touched && f['username'].invalid">
+                <span *ngIf="f['username'].errors.required">This field is mandatory.</span>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password" id="password" type="password" class="form-control">
+              <mat-error *ngIf="f['password'].touched && f['password'].invalid">
+                <span *ngIf="f['password'].errors.required">This field is mandatory.</span>
+              </mat-error>
+            </mat-form-field>
+            <div class="buttons-container">
+              <button mat-raised-button class="login-button" color="primary" [disabled]="!loginForm.valid" type="submit">Log In</button>
+              <button mat-raised-button class="register-button" color="primary" routerLink="/register">New? Register</button>
+            </div>
+          </form>
+          <div class="error_container"> 
+            <mat-card class="error-card" *ngIf="errorMessage">
+              <mat-card-content class="error">
+                <p>Invalid User Name or Password</p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </mat-card>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
